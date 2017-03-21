@@ -17,15 +17,15 @@ public class SingleThread implements Runnable {
 
     public void run(){
         for(int i = 0; i<5;i++){
-            for (long k=0; k<5; k++) {
+            for (long k=0; k<50; k++) {
                 System.out.println(this.name + " : " + i);
-                System.out.println(Thread.currentThread() + " current ");
+//                System.out.println(Thread.currentThread() + " current ");
             }
         }
          this.latch.countDown();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         CountDownLatch latch = new CountDownLatch(3);
 
@@ -40,8 +40,12 @@ public class SingleThread implements Runnable {
 //        System.out.println("thread1 state" + t1.getState());
 //        System.out.println("thread2 state" + t2.getState());
 //        System.out.println("thread3 state" + t3.getState());
-
+//        t1.setPriority(Thread.MAX_PRIORITY);
+//        t2.setPriority(Thread.NORM_PRIORITY);
+//        t3.setPriority(Thread.MIN_PRIORITY);
         t1.start();
+        t1.join();
+        //t1.join(1000);  //等待1000毫秒不管 t1 是否执行完毕
         t2.start();
         t3.start();
 
@@ -62,7 +66,7 @@ public class SingleThread implements Runnable {
         System.out.println(Thread.currentThread() + " run after thread start,not thread end! ");
 
         try {
-            //latch 相当于主线程和各个线程通信.线程通信两种方法:共享内存&??
+            //latch 相当于主线程和各个线程通信.线程通信两种方法:共享内存&消息传递
             latch.await();
         } catch (InterruptedException e) {
             e.printStackTrace();
