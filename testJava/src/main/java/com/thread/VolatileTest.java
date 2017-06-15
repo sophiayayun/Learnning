@@ -19,7 +19,7 @@ public class VolatileTest {
     //线程2调用这个方法
     public void f2() {
         while (true) {
-            //如果线程1对i,j的修改都是可见的，就不会出现j>i的情况了，一旦出现这种情况就能说明线程1对i,j的修改不可见
+            //如果线程1对i,j的修改都是可见的，就不会出现j>i的情况了，一旦出现这种情况就能说明线程1对i,j的修改不是立即可见
             if(j > i) {
                 exceptionCount++;
             }
