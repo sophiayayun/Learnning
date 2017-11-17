@@ -13,11 +13,10 @@ public class SingleThread2 extends Thread {
 
     public void run(){
         for(int i = 0; i<5;i++){
-            for (long k=0; k<1000000; k++) {
+            for (long k=0; k<10; k++) {
                 System.out.println(this.name + " : " + i);
             }
         }
-
     }
 
     public static void main(String[] args) {
@@ -28,5 +27,9 @@ public class SingleThread2 extends Thread {
         s1.start();
         s2.start();
         s3.start();
+//        s1.run();
+//        s2.run();
+//        s3.run();
+        System.out.println("这是主线程,我要结束了");
     }
 }

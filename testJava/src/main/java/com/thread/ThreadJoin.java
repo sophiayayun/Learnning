@@ -9,6 +9,11 @@ public class ThreadJoin implements Runnable {
 
     public void run() {
         for (int k = 0; k < 100000; k++) {
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             a = a + 1;
         }
     }
@@ -17,7 +22,9 @@ public class ThreadJoin implements Runnable {
         Runnable r = new ThreadJoin();
         Thread t = new Thread(r);
         t.start();
-//        t.join(1);   //等待1000毫秒不管 t1 是否执行完毕 ,不加 10000 就会等待t运行完毕
+        t.join();   //等待1000毫秒不管 t1 是否执行完毕 ,不加 10000 就会等待t运行完毕
         System.out.println("main a: " + a);
+
+
     }
 }

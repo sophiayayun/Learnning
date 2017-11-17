@@ -3,10 +3,14 @@ package com.thread;
 /**
  * Created by dengyayun on 17/4/13.
  */
-public class SynchronizedCounter {
+public class SynchronizedCounter implements Runnable{
 
     long count = 0;
     static long staticCount =0;
+
+//    public SynchronizedCounter(String s) {
+//
+//    }
 
     //**instanceMethod ,instanceMethodMoudle  每次只有一个线程能够在这两个方法中执行, 因为他们都是对 实例对象加锁
 
@@ -33,7 +37,11 @@ public class SynchronizedCounter {
 
     //静态方法同步:同步在该方法所属的类上, java 虚拟机中一个类只有一个类对象, 一个线程执行同一个类中的静态方法同步块
     public static synchronized void add1(long value){
-        staticCount =+value;
+//        staticCount =+value;
+
+        for (int i = 0; i < 500; i++) {
+            System.out.println(Thread.currentThread().getName() + " synchronized loop " + i);
+        }
     }
 
     //静态方法同步块:
@@ -43,4 +51,7 @@ public class SynchronizedCounter {
         }
     }
 
+    public void run() {
+
+    }
 }
