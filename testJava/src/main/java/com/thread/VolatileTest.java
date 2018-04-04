@@ -3,8 +3,9 @@ package com.thread;
 /**
  * Created by dengyayun on 17/5/11.
  */
+// 这个例子说明 VolatileTest
 public class VolatileTest {
-    private int i = 0;
+    private   int i = 0;
     private volatile int j = 0;
     public long exceptionCount = 0;
 
@@ -22,6 +23,7 @@ public class VolatileTest {
             //如果线程1对i,j的修改都是可见的，就不会出现j>i的情况了，一旦出现这种情况就能说明线程1对i,j的修改不是立即可见
             if(j > i) {
                 exceptionCount++;
+                System.out.println(exceptionCount);
             }
         }
     }

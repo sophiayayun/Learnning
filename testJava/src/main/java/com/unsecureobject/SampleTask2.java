@@ -22,7 +22,8 @@ public class SampleTask2 implements Runnable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        data.add(size, "1");
+//        data.add(size, "1");
+        data.add("1");
             // 完成一个子线程
             countDownLatch.countDown();
     }

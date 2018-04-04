@@ -14,7 +14,10 @@ public class MyTask implements Runnable{
     public void run() {
         System.out.println("正在执行task " + taskNum);
         try {
-            Thread.currentThread().sleep(4000);
+            Thread.currentThread().sleep(400);
+            if(taskNum ==80) {
+                Thread.currentThread().sleep(40);
+            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

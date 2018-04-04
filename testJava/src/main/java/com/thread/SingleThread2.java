@@ -8,18 +8,19 @@ public class SingleThread2 extends Thread {
     public String name;
 
     public SingleThread2(String name) {
+        super(name);
         this.name = name;
     }
 
     public void run(){
-        for(int i = 0; i<5;i++){
-            for (long k=0; k<10; k++) {
-                System.out.println(this.name + " : " + i);
+        for(int i = 0; i<500000;i++){
+            for (long k=0; k<100000; k++) {
+//                System.out.println(this.name + " : " + i);
             }
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         SingleThread2 s1 = new SingleThread2("李四");
         SingleThread2 s2 = new SingleThread2("阿三");
         SingleThread2 s3 = new SingleThread2("王五");
@@ -27,6 +28,7 @@ public class SingleThread2 extends Thread {
         s1.start();
         s2.start();
         s3.start();
+        s1.join();
 //        s1.run();
 //        s2.run();
 //        s3.run();

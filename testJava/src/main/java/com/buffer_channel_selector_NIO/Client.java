@@ -1,4 +1,4 @@
-package com.buffer_channel_selector;
+package com.buffer_channel_selector_NIO;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

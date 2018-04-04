@@ -13,16 +13,16 @@ public class ProtoPool {
     public static void main(String[] args) throws InterruptedException {
 
         ThreadPoolExecutor executor = new ThreadPoolExecutor(10,20,200, TimeUnit.MILLISECONDS,
-                new ArrayBlockingQueue<Runnable>(10));
+                new ArrayBlockingQueue<Runnable>(300));
 
 //        ExecutorService executorService = new ScheduledThreadPoolExecutor();
 
         //池子最大可容量 10个线程 + 5个排队等待的, 一旦 超过15个还在申请的话,就会报错:RejectedExecutionException,程序不会停止
         //但是如果有线程已经空闲出来了,就没有关系了.
 ///     直接excute提交任务,但是无法知道任务是否执行成功
+
         for (int i = 0; i < 200; i++) {
             MyTask myTask = new MyTask(i);
-//            Thread.sleep(40);
             executor.execute(myTask);
             //你的意思我在这里还可以变化  executor的 coreSzie?
             System.out.println("线程池中线程数目:" + executor.getPoolSize() + " 队列中等待线程的数目: " + executor.getQueue().size()
@@ -30,6 +30,8 @@ public class ProtoPool {
         }
 
         executor.shutdown();
+//        System.exit(0);
+
 
 
         //如果任务实现了 callable接口,可以获取任务的执行情况.通过 submit 提交任务,可以获得future信息. future的get方法会阻塞住知道任务完成.get(long timeout, TimeUnit unit)方法则会阻塞一段时间后立即返回，这时有可能任务没有执行完

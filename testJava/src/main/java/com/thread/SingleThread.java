@@ -16,13 +16,14 @@ public class SingleThread implements Runnable {
     }
 
     public void run(){
-        for(int i = 0; i<5;i++){
-            for (long k=0; k<5; k++) {
+        for(int i = 0; i<50000;i++){
+            for (long k=0; k<50000; k++) {
+                long j = i+k;
                 System.out.println(this.name + " : " + i);
 //                System.out.println(Thread.currentThread() + " current ");
             }
         }
-         this.latch.countDown();
+//         this.latch.countDown();
     }
 
     public static void main(String[] args) throws InterruptedException {
@@ -41,7 +42,7 @@ public class SingleThread implements Runnable {
         //t1.join(1000);  //等待1000毫秒不管 t1 是否执行完毕
         t2.start();
         t3.start();
-        t1.join();
+//        t1.join();
 
 //        System.out.print
         System.out.println(Thread.currentThread() + " run after thread start,not thread end! ");
